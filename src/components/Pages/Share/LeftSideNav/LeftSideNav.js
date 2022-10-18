@@ -13,7 +13,7 @@ const LeftSideNav = () => {
     }, [])
 
     return (
-        <div className='d-none d-lg-block'>
+        <div className=' d-lg-block'>
             <h2>All Cetagories:{cetagories.length} </h2>
             {
                 cetagories.map(cetagory => <p key={cetagory.id}>

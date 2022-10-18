@@ -32,7 +32,7 @@ const Header = () => {
                             Dank memes
                         </Nav.Link>
                     </Nav>
-                    <div className='d-lg-none d-sm-block'>
+                    <div className='d-lg-none'>
                         <LeftSideNav></LeftSideNav>
                     </div>
 
