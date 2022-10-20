@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 const LeftSideNav = () => {
     const [cetagories, setCetagories] = useState([])
 
-
     useEffect(() => {
-        fetch('http://localhost:5000/news-cetagories')
+        fetch('http://localhost:5000/news-categories')
             .then(res => res.json())
             .then(data => setCetagories(data))
 
@@ -14,10 +13,10 @@ const LeftSideNav = () => {
 
     return (
         <div className=' d-lg-block'>
-            <h2>All Cetagories:{cetagories.length} </h2>
+            <h2>All Cetagories</h2>
             {
                 cetagories.map(cetagory => <p key={cetagory.id}>
-                    <Link to={`/cetagory/:${cetagory.id}`}>{cetagory.name}</Link>
+                    <Link to={`/cetagory/${cetagory.id}`}>{cetagory.name}</Link>
                 </p>)
             }
         </div>
