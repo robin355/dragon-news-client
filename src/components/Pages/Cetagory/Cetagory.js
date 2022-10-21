@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import CardSummary from '../Share/CardSummary/CardSummary';
 
 const Cetagory = () => {
     const cetagoriNews = useLoaderData()
@@ -8,7 +9,7 @@ const Cetagory = () => {
         <div>
             <h2>Cetagory all data:{cetagoriNews.length}</h2>
             {
-                cetagoriNews.map()
+                cetagoriNews.map(news => <CardSummary key={news._id} news={news}></CardSummary>)
             }
         </div>
     );

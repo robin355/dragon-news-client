@@ -1,11 +1,22 @@
-import React from 'react';
+import { React, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import Image from 'react-bootstrap/Image'
+import { FaUserAlt } from "react-icons/fa";
+import { AuthContext } from '../../../../Context/UserContext';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 const Header = () => {
+
+    const { user, Logout } = useContext(AuthContext)
+    const handleLogout = () => {
+        Logout()
+            .then(() => { })
+            .catch(e => console.log(e))
+    }
     return (
         <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
             <Container>
@@ -28,9 +39,30 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
+                        <Nav.Link href="#deets">
+                            {user?.uid ?
+                                <>
+                                    <span>{user?.displayName}</span>
+                                    <Button variant="outline-success" onClick={handleLogout}>Logout</Button>
+                                </>
+                                :
+                                <>
+                                    <button><Link to='/login'>Login</Link></button>
+                                    <button><Link to='/register'>Register</Link></button>
+                                </>
+                            }
+
+                        </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                            {user?.photoURL ?
+                                <Image
+                                    roundedCircle
+                                    src={user.photoURL}
+                                    style={{ height: '30px' }}
+                                >
+                                </Image> :
+                                <FaUserAlt />
+                            }
                         </Nav.Link>
                     </Nav>
                     <div className='d-lg-none'>
