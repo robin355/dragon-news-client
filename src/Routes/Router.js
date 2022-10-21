@@ -6,6 +6,7 @@ import Login from "../components/Pages/Share/Login/Login/Login";
 import Register from "../components/Pages/Share/Login/Register/Register";
 import Main from "../Layout/Main";
 import Privateroutes from "../PrivateRoutes/Privateroutes";
+import TearmAndCondition from "../termsandConditon/TearmAndCondition";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/terms',
+                element: <TearmAndCondition></TearmAndCondition>
             }
 
         ]
