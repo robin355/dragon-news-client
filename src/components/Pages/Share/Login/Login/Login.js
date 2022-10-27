@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../../Context/UserContext';
+import useTitle from '../../../State/state';
 
 
 const Login = () => {
@@ -29,7 +30,7 @@ const Login = () => {
                 setError(error.message)
             })
     }
-
+    useTitle('Login')
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

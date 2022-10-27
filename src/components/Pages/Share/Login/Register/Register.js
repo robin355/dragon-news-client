@@ -1,13 +1,15 @@
+import { Toast } from 'bootstrap';
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../Context/UserContext';
+import useTitle from '../../../State/state';
 
 
 const Register = () => {
 
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, emailVerification } = useContext(AuthContext);
     const [error, setError] = useState('')
     const [accept, setAccept] = useState(false)
     const handleSubmit = event => {
@@ -26,6 +28,8 @@ const Register = () => {
                 form.reset();
                 setError('')
                 handleupdateUserProfile(name, photoURL)
+                handleEmailVerification()
+                Toast.success('Please Verify Your Email Address:')
             })
             .catch(e => {
                 setError(e.message)
@@ -44,7 +48,12 @@ const Register = () => {
             .then(() => { })
             .catch(error => console.log(error))
     }
-
+    const handleEmailVerification = () => {
+        emailVerification()
+            .then(() => { })
+            .catch(error => console.log())
+    }
+    useTitle('Register')
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
